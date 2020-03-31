@@ -29,6 +29,7 @@ app.get('/', (req, res, next) => {
     contents += '</body></html>';
  
     res.send(contents);
+    
 });
  
 app.post('/', (req, res, next) => {
@@ -52,20 +53,20 @@ app.post('/', (req, res, next) => {
         while (i--) {
             const sheetname = sheetnames[i];
             resData[sheetname] = xlsx.utils.sheet_to_json(workbook.Sheets[sheetname]);
+
         }
     });
  
     form.on('close', () => {
         res.send(resData);
+        fs.writeFileSync('./test.json', JSON.stringify(resData));
     });
  
-    form.parse(req);{
-        fs.writeFileSync('./test.json', Object, 'utf-8');
-    }
+    form.parse(req);
 });
  
 http.createServer(app).listen(3000, () => {
-    console.log('HTTP server listening on port ' + 3000);
+    console.log('HTTP SERVER : http://127.0.0.1:' + 3000);
 });
 
 module.exports = app;
