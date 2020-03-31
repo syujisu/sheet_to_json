@@ -59,6 +59,7 @@ app.post('/', (req, res, next) => {
  
     form.on('close', () => {
         res.send(resData);
+        //object -> json -> string 처리하여 파일에 저장 
         fs.writeFileSync('./test.json', JSON.stringify(resData));
     });
  
